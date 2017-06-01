@@ -10,6 +10,7 @@ namespace BabyStore.Controllers
     {
         public ActionResult Index()
         {
+            //git connection check
             return View();
         }
 
