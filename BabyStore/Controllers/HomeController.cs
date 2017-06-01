@@ -10,13 +10,12 @@ namespace BabyStore.Controllers
     {
         public ActionResult Index()
         {
-            //git connection check
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(string id)
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your application description page. You entered the ID " + id;
 
             return View();
         }
