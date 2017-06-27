@@ -1,6 +1,8 @@
-﻿namespace BabyStore.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BabyStore.Models
 {
-    public class Product
+    public partial class Product
     {
         public int ID { get; set; }
         public string Name { get; set; }
