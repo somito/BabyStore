@@ -126,6 +126,7 @@ namespace BabyStore.Controllers
                         {
                             duplicateFiles += ", " + file.FileName;
                             duplicates = true;
+                            db.Entry(productToAdd).State = EntityState.Detached;
                         }
                         else
                         {
