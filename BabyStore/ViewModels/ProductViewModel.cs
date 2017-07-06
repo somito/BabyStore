@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
-namespace BabyStore.Models
+using System.Web.Mvc;
+namespace BabyStore.ViewModels
 {
-    public partial class Product
+    public class ProductViewModel
     {
         public int ID { get; set; }
 
@@ -25,9 +25,10 @@ namespace BabyStore.Models
         [RegularExpression("[0-9]+(\\.[0-9][0-9]?)?", ErrorMessage = "The price must be a number up to two decimal places")]
         public decimal Price { get; set; }
 
-        public int? CategoryID { get; set; }
-        public virtual Category Category { get; set; }
-
-        public virtual ICollection<ProductImageMapping> ProductImageMappings { get; set; }
+        [Display(Name = "Category")]
+        public int CategoryID { get; set; }
+        public SelectList CategoryList { get; set; }
+        public List<SelectList> ImageLists { get; set; }
+        public string[] ProductImages { get; set; }
     }
 }
