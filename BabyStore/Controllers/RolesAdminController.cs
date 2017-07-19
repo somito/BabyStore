@@ -8,6 +8,7 @@ Microsoft.AspNet.Identity.Owin;
 
 namespace BabyStore.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller
     {
         public RolesAdminController()
