@@ -7,13 +7,13 @@ namespace BabyStore.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialDatabase : IMigrationMetadata
+    public sealed partial class update_user_fields : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(update_user_fields));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706290653018_InitialDatabase"; }
+            get { return "201707281217574_update_user_fields"; }
         }
         
         string IMigrationMetadata.Source
