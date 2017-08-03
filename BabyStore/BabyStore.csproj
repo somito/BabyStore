@@ -414,6 +414,7 @@
     <Content Include="Views\UsersAdmin\Index.cshtml" />
     <Content Include="Views\UsersAdmin\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Address.cshtml" />
+    <Content Include="Views\UsersAdmin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
