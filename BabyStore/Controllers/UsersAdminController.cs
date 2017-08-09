@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
+using BabyStore.Models;
 
 namespace BabyStore.Controllers
 {
@@ -79,18 +80,47 @@ namespace BabyStore.Controllers
 
         // POST: UsersAdmin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                var user = new ApplicationUser
+                {
+                    UserName = userViewModel.Email,
+                    Email = userViewModel.Email,
+                    DateOfBirth = userViewModel.DateOfBirth,
+                    FirstName = userViewModel.FirstName,
+                    LastName = userViewModel.LastName,
+                    Address = userViewModel.Address
+                };
+                var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
+                //Add User to the selected Roles
+                if (adminresult.Succeeded)
+                {
+                    if (selectedRoles != null)
+                    {
+                        var result = await UserManager.AddToRolesAsync(user.Id, selectedRoles);
+                        if (!result.Succeeded)
+                        {
+                            ModelState.AddModelError("", result.Errors.First());
+                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(),
+                            "Name", "Name");
+                            return View();
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", adminresult.Errors.First());
+                    ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
+                    return View();
+                }
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
+            return View();
         }
 
         // GET: UsersAdmin/Edit/5
