@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
 using BabyStore.Models;
+using BabyStore.ViewModels;
 
 namespace BabyStore.Controllers
 {
@@ -124,9 +125,34 @@ namespace BabyStore.Controllers
         }
 
         // GET: UsersAdmin/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var userRoles = await UserManager.GetRolesAsync(user.Id);
+            return View(new EditUserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = userRoles.Contains(x.Name),
+                    Text = x.Name,
+                    Value = x.Name
+                })
+            });
         }
 
         // POST: UsersAdmin/Edit/5
