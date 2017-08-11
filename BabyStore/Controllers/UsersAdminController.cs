@@ -157,18 +157,45 @@ namespace BabyStore.Controllers
 
         // POST: UsersAdmin/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(EditUserViewModel editUser, params string[] selectedRole)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var user = await UserManager.FindByIdAsync(editUser.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
 
+                user.DateOfBirth = editUser.DateOfBirth;
+                user.FirstName = editUser.FirstName;
+                user.LastName = editUser.LastName;
+                user.Address = editUser.Address;
+
+                var userRoles = await UserManager.GetRolesAsync(user.Id);
+                
+                selectedRole = selectedRole ?? new string[] { };
+
+                var result = await UserManager.AddToRolesAsync(user.Id, selectedRole.Except(userRoles).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+
+                result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ModelState.AddModelError("", "Something failed.");
+            return View();
         }
 
         // GET: UsersAdmin/Delete/5
