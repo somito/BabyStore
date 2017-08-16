@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201707281217574_update_user_fields.Designer.cs">
       <DependentUpon>201707281217574_update_user_fields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708160701251_EditUserViewModel.cs" />
+    <Compile Include="Migrations\201708160701251_EditUserViewModel.Designer.cs">
+      <DependentUpon>201708160701251_EditUserViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\StoreConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -419,6 +423,8 @@
     <Content Include="Views\Shared\_CreateRegisterUserPartial.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_UserDetailsPartial.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Shared\_EditUserPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -437,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707281217574_update_user_fields.resx">
       <DependentUpon>201707281217574_update_user_fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160701251_EditUserViewModel.resx">
+      <DependentUpon>201708160701251_EditUserViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
