@@ -87,6 +87,7 @@ namespace BabyStore.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    ViewBag.ReturnUrl = returnUrl;
                     return View(model);
             }
         }
