@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @Html.ActionLink("Register as a new user", "Register", new { ReturnUrl = ViewBag.ReturnUrl })
                 </p>
                 <p>
                     @Html.ActionLink("Forgot your password?", "ResetPassword")
