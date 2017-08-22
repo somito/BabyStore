@@ -230,10 +230,15 @@
     <Compile Include="Migrations\201708160701251_EditUserViewModel.Designer.cs">
       <DependentUpon>201708160701251_EditUserViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708221308154_AddBasketLine.cs" />
+    <Compile Include="Migrations\201708221308154_AddBasketLine.Designer.cs">
+      <DependentUpon>201708221308154_AddBasketLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\StoreConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\BasketLine.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -445,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708160701251_EditUserViewModel.resx">
       <DependentUpon>201708160701251_EditUserViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708221308154_AddBasketLine.resx">
+      <DependentUpon>201708221308154_AddBasketLine.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
