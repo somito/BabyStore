@@ -35,5 +35,13 @@ namespace BabyStore.Controllers
             basket.UpdateBasket(viewModel.BasketLines);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult RemoveLine(int id)
+        {
+            Basket basket = Basket.GetBasket();
+            basket.RemoveLine(id);
+            return RedirectToAction("Index");
+        }
     }
 }
