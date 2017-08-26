@@ -10,7 +10,7 @@ namespace BabyStore.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Products");
         }
 
         public ActionResult About(string id)
