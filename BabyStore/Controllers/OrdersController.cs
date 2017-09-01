@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using BabyStore.DAL;
 using BabyStore.Models;
+using Microsoft.AspNet.Identity.Owin;
+using System.Threading.Tasks;
 
 namespace BabyStore.Controllers
 {
@@ -15,6 +17,21 @@ namespace BabyStore.Controllers
     public class OrdersController : Controller
     {
         private StoreContext db = new StoreContext();
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ??
+                HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: Orders
         public ActionResult Index()
@@ -54,10 +71,31 @@ namespace BabyStore.Controllers
             }
         }
 
-        // GET: Orders/Create
-        public ActionResult Create()
+        // GET: Orders/Review
+        public async Task<ActionResult> Review()
         {
-            return View();
+            Basket basket = Basket.GetBasket();
+            Order order = new Order();
+
+            order.UserID = User.Identity.Name;
+            ApplicationUser user = await UserManager.FindByNameAsync(order.UserID);
+            order.DeliveryName = user.FirstName + " " + user.LastName;
+            order.DeliveryAddress = user.Address;
+            order.OrderLines = new List<OrderLine>();
+            foreach (var basketLine in basket.GetBasketLines())
+            {
+                OrderLine line = new OrderLine
+                {
+                    Product = basketLine.Product,
+                    ProductID = basketLine.ProductID,
+                    ProductName = basketLine.Product.Name,
+                    Quantity = basketLine.Quantity,
+                    UnitPrice = basketLine.Product.Price
+                };
+                order.OrderLines.Add(line);
+            }
+            order.TotalPrice = basket.GetTotalCost();
+            return View(order);
         }
 
         // POST: Orders/Create
