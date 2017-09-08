@@ -103,16 +103,22 @@ namespace BabyStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,UserID,DeliveryName,DeliveryAddress,TotalPrice,DateCreated")] Order order)
+        public ActionResult Create([Bind(Include = "UserID,DeliveryName,DeliveryAddress")] Order order)
         {
             if (ModelState.IsValid)
             {
+                order.DateCreated = DateTime.Now;
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                //add the orderlines to the database after creating the order
+                Basket basket = Basket.GetBasket();
+                order.TotalPrice = basket.CreateOrderLines(order.OrderID);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = order.OrderID });
             }
 
-            return View(order);
+            return RedirectToAction("Review");
         }
 
         protected override void Dispose(bool disposing)
