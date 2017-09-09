@@ -34,17 +34,41 @@ namespace BabyStore.Controllers
         }
 
         // GET: Orders
-        public ActionResult Index()
+        public ActionResult Index(string orderSearch, string startDate, string endDate)
         {
-            if (User.IsInRole("Admin"))
+            var orders = db.Orders.OrderBy(o => o.DateCreated).Include(o => o.OrderLines);
+
+            if (!User.IsInRole("Admin"))
             {
-                return View(db.Orders.ToList());
-            }
-            else
-            {
-                return View(db.Orders.Where(o => o.UserID == User.Identity.Name));
+                orders = orders.Where(o => o.UserID == User.Identity.Name);
             }
 
+            if (!String.IsNullOrEmpty(orderSearch))
+            {
+                orders = orders.Where(o => o.OrderID.ToString().Equals(orderSearch) ||
+                o.UserID.Contains(orderSearch) || o.DeliveryName.Contains(orderSearch) ||
+                o.DeliveryAddress.AddressLine1.Contains(orderSearch) ||
+                o.DeliveryAddress.AddressLine2.Contains(orderSearch) ||
+                o.DeliveryAddress.Town.Contains(orderSearch) ||
+                o.DeliveryAddress.County.Contains(orderSearch) ||
+                o.DeliveryAddress.Postcode.Contains(orderSearch) ||
+                o.TotalPrice.ToString().Equals(orderSearch) ||
+                o.OrderLines.Any(ol => ol.ProductName.Contains(orderSearch)));
+            }
+
+            DateTime parsedStartDate;
+            if (DateTime.TryParse(startDate, out parsedStartDate))
+            {
+                orders = orders.Where(o => o.DateCreated >= parsedStartDate);
+            }
+
+            DateTime parsedEndDate;
+            if (DateTime.TryParse(endDate, out parsedEndDate))
+            {
+                orders = orders.Where(o => o.DateCreated <= parsedEndDate);
+            }
+
+            return View(orders);
         }
 
         // GET: Orders/Details/5
