@@ -34,8 +34,8 @@ namespace BabyStore.Controllers
         }
 
         // GET: Orders
-        public ActionResult Index(string orderSearch, string startDate, string endDate, 
-                                  string orderSortOrder)
+        public async Task<ActionResult> Index(string orderSearch, string startDate, string endDate, 
+                                  string orderSortOrder, int? page)
         {
             var orders = db.Orders.OrderBy(o => o.DateCreated).Include(o => o.OrderLines);
 
@@ -97,8 +97,10 @@ namespace BabyStore.Controllers
                     orders = orders.OrderByDescending(o => o.DateCreated);
                     break;
             }
-
-            return View(orders);
+            int currentPage = (page ?? 1);
+            var currentPageOfOrders = await orders.Skip((currentPage - 1) *
+                Constants.PageItems).Take(Constants.PageItems).ToListAsync();
+            return View(currentPageOfOrders);
         }
 
         // GET: Orders/Details/5
