@@ -10,6 +10,7 @@ using BabyStore.DAL;
 using BabyStore.Models;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
+using BabyStore.Utilities;
 
 namespace BabyStore.Controllers
 {
@@ -98,8 +99,10 @@ namespace BabyStore.Controllers
                     break;
             }
             int currentPage = (page ?? 1);
-            var currentPageOfOrders = await orders.Skip((currentPage - 1) *
-                Constants.PageItems).Take(Constants.PageItems).ToListAsync();
+            ViewBag.CurrentPage = currentPage;
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)orders.Count() / Constants.PageItems);
+            var currentPageOfOrders = await orders.ReturnPages(currentPage, 
+                Constants.PageItems);
             return View(currentPageOfOrders);
         }
 

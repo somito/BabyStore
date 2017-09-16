@@ -257,6 +257,7 @@
     <Compile Include="Models\ProductsMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\AsyncPaging.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\BasketSummaryViewModel.cs" />
     <Compile Include="ViewModels\BasketViewModel.cs" />
