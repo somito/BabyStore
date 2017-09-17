@@ -220,6 +220,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HTMLHelpers\PagingLinks.cs" />
     <Compile Include="Migrations\201707281216372_twocontextreset.cs" />
     <Compile Include="Migrations\201707281216372_twocontextreset.Designer.cs">
       <DependentUpon>201707281216372_twocontextreset.cs</DependentUpon>

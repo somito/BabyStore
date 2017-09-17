@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BabyStore.Models.Order>
+@using BabyStore.HTMLHelpers;
 
 @{
     ViewBag.Title = "Orders";
@@ -61,7 +62,7 @@
         <th>
             @Html.ActionLink("Time of Order", "Index", new
                {
-                   orderSortOrder =ViewBag.DateSort,
+                   orderSortOrder = ViewBag.DateSort,
                    orderSearch = ViewBag.CurrentOrderSearch,
                    startdate = ViewBag.StartDate,
                    endDate = ViewBag.EndDate
@@ -97,3 +98,12 @@
 }
 
 </table>
+<div class="paging small-bold-text">
+    @Html.GeneratePageLinks((int)ViewBag.CurrentPage, (int)ViewBag.TotalPages, page =>
+    Url.Action("Index", new
+        { page,
+        orderSortOrder = ViewBag.CurrentSortOrder,
+        orderSearch = ViewBag.CurrentOrderSearch,
+        startdate = ViewBag.StartDate,
+        endDate = ViewBag.EndDate }))
+</div>
