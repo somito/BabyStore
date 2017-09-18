@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201708291329169_addorders.Designer.cs">
       <DependentUpon>201708291329169_addorders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709181212092_category_rowversion.cs" />
+    <Compile Include="Migrations\201709181212092_category_rowversion.Designer.cs">
+      <DependentUpon>201709181212092_category_rowversion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\StoreConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -477,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708291329169_addorders.resx">
       <DependentUpon>201708291329169_addorders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709181212092_category_rowversion.resx">
+      <DependentUpon>201709181212092_category_rowversion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

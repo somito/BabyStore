@@ -12,5 +12,7 @@ namespace BabyStore.Models
         [Display(Name = "Category Name")]
         public string Name { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

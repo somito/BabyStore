@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BabyStore.DAL;
 using BabyStore.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace BabyStore.Controllers
 {
@@ -66,15 +67,62 @@ namespace BabyStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Edit(int? id, byte[] rowVersion)
         {
-            if (ModelState.IsValid)
+            string[] fieldsToBind = new string[] { "Name", "RowVersion" };
+
+            if (id == null)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(category);
+
+            var categoryToUpdate = db.Categories.Find(id);
+
+            if (categoryToUpdate == null)
+            {
+                Category deletedCategory = new Category();
+                TryUpdateModel(deletedCategory, fieldsToBind);
+                ModelState.AddModelError(string.Empty, "Unable to save your changes because the " +
+                "category has been deleted by another user.");
+                return View(deletedCategory);
+            }
+
+            if (TryUpdateModel(categoryToUpdate, fieldsToBind))
+            {
+                try
+                {
+                    db.Entry(categoryToUpdate).OriginalValues["RowVersion"] = rowVersion;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var exEntry = ex.Entries.Single();
+                    var currentUIValues = (Category)exEntry.Entity;
+                    var databaseCategory = exEntry.GetDatabaseValues();
+                    if (databaseCategory == null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Unable to save your changes because " +
+                        "the category has been deleted by another user.");
+                    }
+                    else
+                    {
+                        var databaseCategoryValues = (Category)databaseCategory.ToObject();
+                        if (databaseCategoryValues.Name != currentUIValues.Name)
+                        {
+                            ModelState.AddModelError("Name", "Current value in database: " +
+                            databaseCategoryValues.Name);
+                        }
+                        ModelState.AddModelError(string.Empty, "The record has been modified by " +
+                        "another user after you loaded the screen.Your changes have not yet been saved. " +
+                        "The new values in the database are shown below. If you want to overwrite these values with your " +
+                        "changes then click save otherwise go back to the categories page.");
+                        categoryToUpdate.RowVersion = databaseCategoryValues.RowVersion;
+                    }
+                }
+            }
+
+            return View(categoryToUpdate);
         }
 
         // GET: Categories/Delete/5
