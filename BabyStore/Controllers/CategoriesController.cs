@@ -126,7 +126,7 @@ namespace BabyStore.Controllers
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, bool? deletionError)
         {
             if (id == null)
             {
@@ -135,26 +135,46 @@ namespace BabyStore.Controllers
             Category category = db.Categories.Find(id);
             if (category == null)
             {
+                if (deletionError.GetValueOrDefault())
+                {
+                    return RedirectToAction("Index");
+                }
+
                 return HttpNotFound();
             }
+
+            if (deletionError.GetValueOrDefault())
+            {
+                ModelState.AddModelError(string.Empty, "The category you attempted to delete has been " +
+                "modified by another user after you loaded it. " + "The delete has not been " +
+                "performed. The current values in the database are shown above. " + "If you still " +
+                "want to delete this record click the Delete button again, otherwise go back to the " +
+                "categories page.");
+            }
+
             return View(category);
         }
 
         // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(Category category)
         {
-            Category category = db.Categories.Find(id);
-
-            foreach (var p in category.Products)
+            try
             {
-                p.CategoryID = null;
+                db.Entry(category).State = EntityState.Deleted;
+                var products = db.Products.Where(p => p.CategoryID == category.ID);
+                foreach (var p in products)
+                {
+                    p.CategoryID = null;
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-
-            db.Categories.Remove(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            catch (DbUpdateConcurrencyException)
+            {
+                return RedirectToAction("Delete", new { deletionError = true, id = category.ID });
+            }
         }
 
         protected override void Dispose(bool disposing)
