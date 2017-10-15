@@ -132,7 +132,8 @@ namespace BabyStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            string query = "SELECT * FROM Categories WHERE ID= @p0";
+            Category category = db.Categories.SqlQuery(query, id).SingleOrDefault();
             if (category == null)
             {
                 if (deletionError.GetValueOrDefault())
