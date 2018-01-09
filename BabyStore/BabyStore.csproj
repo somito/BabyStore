@@ -364,6 +364,8 @@
     <Content Include="Content\ProductImages\Thumbnails\Vest2.jpg" />
     <Content Include="Content\ProductImages\Vest1.JPG" />
     <Content Include="Content\ProductImages\Vest2.JPG" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\store.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -386,6 +388,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SimpleExample.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
