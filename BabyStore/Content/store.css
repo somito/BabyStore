@@ -15,3 +15,13 @@
 html {
     animation: fadeIn 2s;
 }
+
+footer {
+    margin-bottom: 20px;
+    background-color:deepskyblue;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+    padding:5px;
+    border-radius:5px;
+}
