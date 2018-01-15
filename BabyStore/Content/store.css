@@ -24,6 +24,7 @@ footer {
     line-height: 30px;
     padding:5px;
     border-radius:5px;
+    margin-top:10px;
 }
 
 h1, h2 {
@@ -34,12 +35,10 @@ h1, h2 {
 }
 
 .col-md-3 {
-    float: left;
-    width: 25%;
     margin-bottom: 20px;
 }
 
-.row:after {
+.row:after, .form-group:after {
     content: " ";
     display: table;
     clear: both;
@@ -95,4 +94,47 @@ td {
 
 .large-text {
     font-size: 1.5em;
+}
+
+.form-group{ margin-bottom: 10px; }
+
+.col-md-1 { width: 8.333333333333332%; }
+.col-md-2 { width: 16.666666666666664%; }
+.col-md-3 { width: 25%; }
+.col-md-4 { width: 33.33333333333333%; }
+.col-md-5 { width: 41.66666666666667%; }
+.col-md-6 { width: 50%; }
+.col-md-7 { width: 58.333333333333336%; }
+.col-md-8 { width: 66.66666666666666%; }
+.col-md-9 { width: 75%; }
+.col-md-10 { width: 83.33333333333334%; }
+.col-md-11 { width: 91.66666666666666%; }
+.col-md-12 { width: 100%; }
+
+.col-md-1,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11 {
+    float: left;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 3px;
+    border: solid deepskyblue;
+    color: rgb(14, 117, 204);
 }
