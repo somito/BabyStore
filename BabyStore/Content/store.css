@@ -64,9 +64,9 @@ a:hover {
     text-decoration: underline;
 }
 
-a.btn-primary { background-color: lawngreen; }
+a.btn-primary, .btn-default, .btn-primary { background-color: lawngreen;}
 
-a.btn-primary:hover { background-color: green; }
+a.btn-primary:hover, .btn-default:hover, .btn-primary:hover { background-color: green; }
 
 a.btn-lg{
     padding: 10px 16px;
@@ -77,7 +77,7 @@ a.btn-lg{
     margin-bottom: 20px;
 }
 
-a.btn {
+a.btn, .btn {
     border-radius: 5px;
     color: #ffffff;
     text-decoration: none;
@@ -107,7 +107,7 @@ td {
 .col-md-7 { width: 58.333333333333336%; }
 .col-md-8 { width: 66.66666666666666%; }
 .col-md-9 { width: 75%; }
-.col-md-10 { width: 83.33333333333334%; }
+.col-md-10 { width: 75%; }
 .col-md-11 { width: 91.66666666666666%; }
 .col-md-12 { width: 100%; }
 
@@ -123,6 +123,7 @@ td {
 .col-md-10,
 .col-md-11 {
     float: left;
+    padding-right: 5px;
 }
 
 label {
@@ -137,4 +138,40 @@ label {
     border-radius: 3px;
     border: solid deepskyblue;
     color: rgb(14, 117, 204);
+    display: block;
+}
+
+.col-md-offset-2 {
+    margin-left: 16.666666666666664%;
+}
+
+.col-md-offset-0 { margin-left: 0; }
+.col-md-offset-1 { margin-left: 8.333333333333332%; }
+.col-md-offset-2 { margin-left: 16.666666666666664%; }
+.col-md-offset-3 { margin-left: 25%; }
+.col-md-offset-4 { margin-left: 33.33333333333333%; }
+.col-md-offset-5 { margin-left: 41.66666666666667%; }
+.col-md-offset-6 { margin-left: 50%; }
+.col-md-offset-7 { margin-left: 58.333333333333336%; }
+.col-md-offset-8 { margin-left: 66.66666666666666%; }
+.col-md-offset-9 { margin-left: 75%; }
+.col-md-offset-10 { margin-left: 83.33333333333334%; }
+.col-md-offset-11 { margin-left: 91.66666666666666%; }
+
+input[type=submit]:hover {
+    cursor: pointer;
+}
+
+.text-danger {
+    color: red;
+    font-weight: bold;
+}
+
+input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.control-label {
+    text-align: right;
 }
