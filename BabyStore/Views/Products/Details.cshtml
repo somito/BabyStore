@@ -55,7 +55,7 @@
                 @foreach (var item in Model.ProductImageMappings.OrderBy(pim => pim.ImageNumber))
                 {
                     <a href="@(Url.Content(Constants.ProductImagePath) + item.ProductImage.FileName)">
-                        <img src="@(Url.Content(Constants.ProductThumbnailPath) + item.ProductImage.FileName)" style=padding:5px>
+                        <img src="@(Url.Content(Constants.ProductThumbnailPath) + item.ProductImage.FileName)">
                     </a>
                 }
             </dd>
@@ -68,7 +68,7 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.ID)
-                @Html.DropDownList("quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                @Html.DropDownList("quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control" })
                 <input type="submit" class="btn btn-primary btn-xs" value="Add to Basket">
             }
         </dd>

@@ -21,7 +21,7 @@ footer {
     background-color:deepskyblue;
     color: white;
     height: 30px;
-    line-height: 30px;
+    line-height: 20px;
     padding:5px;
     border-radius:5px;
     margin-top:10px;
@@ -174,4 +174,58 @@ input, textarea, select, button {
 
 .control-label {
     text-align: right;
+}
+
+h4{
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+input[type=checkbox] {
+    vertical-align: middle;
+}
+
+dl {
+    width: 100%;
+    overflow: hidden;
+}
+dt {
+    float: left;
+    /* adjust the width; make sure the total of both is 100% */
+    width: 50%;
+    /*clear left ensure that if there is an empty dd then the elements do not wrap*/
+    clear:left;
+    font-weight:bold;
+}
+dd {
+    float: left;
+    /* adjust the width; make sure the total of both is 100% */
+    width: 50%;
+}
+dt,dd { line-height:20px; }
+
+table { 
+    width: 100%; 
+    margin-bottom: 5px;
+}
+
+th {
+    font-weight: bold;
+    text-align: left;
+    padding: 5px;
+    border-bottom:1px solid;
+}
+
+td {
+    padding: 5px;
+    vertical-align: top;
+}
+
+
+.orders-table td {
+    border-bottom: 1px solid;
+}
+
+.orders-table a {
+    text-decoration: underline;
 }
