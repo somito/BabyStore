@@ -269,6 +269,7 @@ h2 + a, h2 + p > a, p + p > a {
 .navbar-header {
     float: left;
     padding: 5px;
+    position: relative;
 }
 
 .nav {
@@ -293,4 +294,47 @@ h2 + a, h2 + p > a, p + p > a {
 
 .navbar-toggle {
     display: none;
+}
+
+.navbar-collapse {
+    position: relative;
+}
+
+.navbar-form {
+    position: absolute;
+    bottom: 40px;
+    left: 30%;
+}
+
+.navbar .form-control {
+    padding: 5px;
+    width: 250px;
+}
+
+.navbar-form button {
+    padding: 5px 20px;
+    font-size:1.2em;
+}
+
+a.navbar-brand {
+    color: hotpink;
+    position: absolute;
+    bottom: 10px;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    height: 86px;
+    width: 250px;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    background-image: url(Crib1.JPG);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 85%;
+}
+
+a.navbar-brand:first-line{
+    color: deepskyblue;
+    font-size: 1.8em;
 }
