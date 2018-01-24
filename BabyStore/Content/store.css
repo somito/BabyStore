@@ -38,7 +38,8 @@ h1, h2 {
     margin-bottom: 20px;
 }
 
-.row:after, .form-group:after {
+/*clearfix*/
+.row:after, .form-group:after, .navbar:after {
     content: " ";
     display: table;
     clear: both;
@@ -255,4 +256,41 @@ td {
 h2 + a, h2 + p > a, p + p > a {
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.navbar {
+    background-color: deepskyblue;
+    border-radius: 5px;
+    margin-top: 110px;
+    margin-bottom: 10px;
+    padding: 0px 5px;
+}
+
+.navbar-header {
+    float: left;
+    padding: 5px;
+}
+
+.nav {
+    float:left;
+}
+
+.navbar-left {
+    float: left;
+}
+
+.navbar a{
+    color: white;
+}
+
+.nav li, .navbar-form .form-group {
+    display: inline-block;
+}
+
+.nav li {
+    padding: 5px;
+}
+
+.navbar-toggle {
+    display: none;
 }
