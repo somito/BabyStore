@@ -334,7 +334,12 @@ a.navbar-brand {
     background-size: 85%;
 }
 
-a.navbar-brand:first-line{
+a.navbar-brand:first-line {
     color: deepskyblue;
     font-size: 1.8em;
 }
+
+.navbar-right {
+    float: right;
+}
+
