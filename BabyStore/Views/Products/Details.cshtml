@@ -83,3 +83,16 @@
     }
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('a>img').click(function (evt) {
+                evt.preventDefault();
+                var thumbnailAddress = $(this).parent().attr('href');
+                var mainImage = $('dd > img');
+                mainImage.attr('src', thumbnailAddress);
+            });
+        });
+    </script>
+}
