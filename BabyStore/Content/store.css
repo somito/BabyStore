@@ -464,5 +464,28 @@ a.navbar-brand:first-line {
     div {
         margin-bottom: 20px;
     }
+    .navbar-header:after{
+        content: "Menu";
+    }
+    .navbar {
+        color: white;
+    }
+    a.navbar-brand {
+        bottom: 22px;
+    }
+
+    .navbar-collapse:before {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+    .navbar-collapse {
+        display : none;
+        font-size: 1.2em;
+    }
+
+    .navbar:hover .navbar-collapse{
+        display: block;
+    }
 }
 
