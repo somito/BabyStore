@@ -57,16 +57,16 @@
                 </a>
             }
         </td>
-        <td>
+        <td data-th="@Html.DisplayNameFor(model => model.Category)">
             @Html.DisplayFor(modelItem => item.Category.Name)
         </td>
-        <td>
+        <td data-th="@Html.DisplayNameFor(model => model.Products.First().Name)">
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        <td data-th="@Html.DisplayNameFor(model => model.Products.First().Description)">
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
+        <td data-th="@Html.DisplayNameFor(model => model.Products.First().Price)">
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
