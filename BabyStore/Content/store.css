@@ -101,7 +101,7 @@ td {
     font-size: 1.5em;
 }
 
-.form-group{ margin-bottom: 10px; }
+
 
 
 
@@ -442,12 +442,16 @@ a.navbar-brand:first-line {
         transition: ease-in .25s;
     }
 
-        .nav li a:hover {
-            background-color: hotpink;
-            border: 1px solid hotpink;
-            transform: scale(1.1);
-            text-decoration: none;
-        }
+    .nav li a:hover {
+        background-color: hotpink;
+        border: 1px solid hotpink;
+        transform: scale(1.1);
+        text-decoration: none;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
 }
 
 @media (max-width: 899px) {
@@ -539,6 +543,10 @@ a.navbar-brand:first-line {
     .floated-cols .col-md-11 {
         float: left;
         padding-right: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 3px;
     }
 }
 

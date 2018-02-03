@@ -14,7 +14,7 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row">
+        <div class="row floated-cols">
             <div class="col-md-2"><label>Item</label></div>
             <div class="col-md-2"><label>Quantity</label></div>
             <div class="col-md-2"><label>Unit Price</label></div>
@@ -22,7 +22,7 @@
 
         @foreach (var item in Model.OrderLines)
         {
-            <div class="row">
+            <div class="row floated-cols">
                 <div class="col-md-2">@Html.DisplayFor(modelItem => item.Product.Name)</div>
                 <div class="col-md-2">@Html.DisplayFor(modelItem => item.Quantity)</div>
                 <div class="col-md-2">@Html.DisplayFor(modelItem => item.UnitPrice)</div>
